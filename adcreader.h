@@ -24,6 +24,7 @@
 #include <linux/i2c-dev.h>
 #include <assert.h>
 
+#include "circularbuffer.h"
 #define readwrite_buff 10
 
 
@@ -43,6 +44,8 @@ public:
   unsigned char writebuffer[readwrite_buff];
   unsigned char readbuffer[readwrite_buff];
   char signbit;
+
+
   
     
     //functions or function prototypes

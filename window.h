@@ -28,21 +28,6 @@ public:
 
 public slots:
 	void setGain(double gain);
-	
-
-public:
-	//	double ringBuffer[BUFFER_LENGTH];
-	//	int buffer_index;
-	//channel numbers
-	//	int tempChannel;
-	//	int humChannel;
-	//	int lightChannel;
-
-	//sensor buffers
-	
-	Circularbuffer tempbuffer;
-	Circularbuffer humbuffer;
-	Circularbuffer lightbuffer;
 
 
 // internal variables for the window class

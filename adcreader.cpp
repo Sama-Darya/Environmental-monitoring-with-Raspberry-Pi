@@ -6,7 +6,7 @@
 */
 
 #include "adcreader.h"
-#include "ringbuffer.h"
+#include "circularbuffer.h"
 
 
 #include <QDebug>
@@ -34,6 +34,11 @@ unsigned char writebuffer[10] = { 0 };
 unsigned char readbuffer[10] = { 0 };
 char signbit = 0;
 
+  //sensor buffers, need to be accessable to window.cpp so put extern in front
+Circularbuffer tempbuffer;	
+Circularbuffer humbuffer;
+Circularbuffer lightbuffer;
+
 
 
 //functions implementations
@@ -44,12 +49,6 @@ void ADCreader::run()
   
 	running = true;
 	//ADCreader adcreader;
-	/*
-	//adding the sensor ringbuffers
-	Queue tempBuffer;
-	Queue humBuffer;
-	Queue lightBuffer;
-	*/
 	/*
 	light_volt =  adcreader.read_voltage(0x68,1, 12, 1, 1);
 	temp_volt =  adcreader.read_voltage(0x68,2, 12, 1, 1);
@@ -62,12 +61,12 @@ void ADCreader::run()
 	    humBuffer.Append(&adcreader.read_voltage(0x68,2, 12, 1, 1));
 	    lightBuffer.Append(&adcreader.read_voltage(0x68,3, 12, 1, 1));
 	}
-	
+	*/
 	
 	
 	while (running) {
 	 
-	 
+	  /*
 	  temp = (temp_volt - 0.621)/0.01; //temperature calculation
 	  qDebug() << "Light voltage: %G \n" << light_volt;
 	  qDebug() << "Temmperature (deg C):  %G \n" << temp;
@@ -76,11 +75,14 @@ void ADCreader::run()
 	  light_volt =  adcreader.read_voltage(0x68,1, 12, 1, 1);
 	temp_volt =  adcreader.read_voltage(0x68,2, 12, 1, 1);
 	hum_volt =  adcreader.read_voltage(0x68,3, 12, 1, 1);
-	
+	  */
+	  if(!tempbuffer.Full()){tempbuffer.Insert((read_voltage(0x68,2, 12, 1,1) - 0.621)/0.01);}
+	  if(!humbuffer.Full()){humbuffer.Insert((0.826-(read_voltage(0x68,3, 12, 1,1)))/0.04);}
+
 
 	  
-  //	sleep(1);
-	//	}*/
+	  //sleep(1);
+       	}
 }
 
 void ADCreader::quit()

@@ -4,7 +4,13 @@
 
 
 
-#include <cmath>  // for sine stuff
+//#include <cmath>  // for sine stuff
+
+//sensor buffers, need to be accessable to window.cpp so put extern in front
+extern Circularbuffer tempbuffer;	
+extern Circularbuffer humbuffer;
+extern Circularbuffer lightbuffer;
+
 Window::Window() : gain(5), count(0)
 {
 
@@ -110,7 +116,7 @@ void Window::timerEvent( QTimerEvent * )
 {
   //double inVal = gain * sin( M_PI * count/50.0 );
   //double temp_volt,light_volt,hum, hum_volt, temp;
-  double light_volt = 0.5;
+  // double light_volt = 0.5;
   //temp_volt = adcreader->read_voltage(0x68,2, 12, 1,1);
   //hum_volt = adcreader->read_voltage(0x68,3, 12, 1,1);
   /*
@@ -119,11 +125,11 @@ void Window::timerEvent( QTimerEvent * )
   if(!humbuffer.Empty())
     hum_volt = humbuffer.Remove();
   */
-  
+  /*
   if(tempbuffer.Full()){ fprintf(stderr,"The Buffer is FULL!\n");}
   if(!tempbuffer.Full()){tempbuffer.Insert((adcreader->read_voltage(0x68,2, 12, 1,1) - 0.621)/0.01);}
   if(!humbuffer.Full()){humbuffer.Insert((0.826-(adcreader->read_voltage(0x68,3, 12, 1,1)))/0.04);}
-  
+  */
   ++count;
   // temp = (temp_volt - 0.621)/0.01; //temperature calculation
   //hum = (0.826-hum_volt)/0.04; //where 0.826 is from datasheet and 3.198/75.3=0.04
@@ -153,7 +159,8 @@ void Window::timerEvent( QTimerEvent * )
 	plot->replot();
 
 	// set the thermometer value
-	thermo->setValue( light_volt + 10 );
+	//thermo->setValue( light_volt + 10 );
+	thermo->setValue( 10 );
         
 }
 
