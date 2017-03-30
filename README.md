@@ -16,7 +16,7 @@ These factors are carefully selected, so that they can give a detailed and usefu
 
 ## Full documentation
 
-See [Wiki] (https://github.com/Treasurenkawu16/Environmental-monitoring-with-Raspberry-Pi/wiki) for full documentation on both the hardware and software parts of the project. Examples, youtube video links, operational details and additional information is also included.
+See Wiki for full documentation on both the hardware and software parts of the project. Examples, youtube video links, operational details and additional information is also included.
 
 ## Table of Contents
 
@@ -36,6 +36,6 @@ Instructions on how to use our projects after installations and screenshots of t
 
 ### User Interface
 
-Example screenshots of GUI, created and developed using QT, for monitoring the application parameters will be uploaded soon. Additional information can be found on [GUI Wiki] (https://github.com/Treasurenkawu16/Environmental-monitoring-with-Raspberry-Pi/wiki)
+Example screenshots of GUI, created and developed using QT, for monitoring the application parameters will be uploaded soon. Additional information can be found on GUI Wiki.
 
 ### License
