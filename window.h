@@ -9,6 +9,9 @@
 #include <QBoxLayout>
 #include "adcreader.h"
 
+//set length of the ringbuffer to be 50
+#define BUFFER_LENGTH 50
+
 // class definition 'Window', inheritance of QWidget
 class Window : public QWidget
 {
@@ -24,6 +27,15 @@ public:
 
 public slots:
 	void setGain(double gain);
+	
+
+public:
+	double ringBuffer[BUFFER_LENGTH];
+	int buffer_index;
+	//channel numbers
+	int tempChannel;
+	int humChannel;
+	int lightChannel;
 
 // internal variables for the window class
 private:
