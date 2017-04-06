@@ -11,9 +11,6 @@ read_voltage(address,channel,bitrate,pga,conversionmode) returns the voltage pre
 
 #include <QThread>
 
-//for the buffer with 50 elements
-#define BUFFER_LENGTH 50
-
 class ADCreader : public QThread
 {
 public:
