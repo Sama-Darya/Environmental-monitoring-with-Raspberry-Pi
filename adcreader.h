@@ -22,9 +22,7 @@ public:
 	void run();
 private:
 	bool running;
-	
-public:
-	double ringBuffer[BUFFER_LENGTH];
+
 /// <summary>
 /// Reads the raw value from the selected ADC channel
 /// </summary>
