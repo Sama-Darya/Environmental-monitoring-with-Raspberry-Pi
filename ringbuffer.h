@@ -10,7 +10,23 @@
 #define ringbuffer_h
 #define BUFFER_SIZE 128
 /*buffer class defination begins below: */ 
-
+class Queue {
+public:
+    Queue();
+    void Append(void* newitem);
+    void *First(void);
+    int Length(void) const;
+    int Full(void) const;
+    int Empty(void) const;
+private:
+    void *fdata[BUFFER_SIZE];
+    int fp;
+    int fg;
+    int fcount;
+};
+inline int Queue::Length(void) const { return fcount; }
+inline int Queue::Full(void) const { return fcount == BUFFER_SIZE; }
+inline int Queue::Empty(void) const { return fcount == 0; }
 
 
 
