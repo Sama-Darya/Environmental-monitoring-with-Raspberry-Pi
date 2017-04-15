@@ -28,7 +28,7 @@ A table of contents is presented in order to quickly navigate through this READM
 ### Installation 
 
 1. Installing this project locally can be done by cloning this archive into your own Raspberry Pi:<br />  ``` git clone https://github.com/Treasurenkawu16/Environmental-monitoring-with-Raspberry-Pi.git``` <br />
-2. The following directory should be first opened: ```cd QwtExample```<br />
+2. The following directory should be first opened, after unzipping: ```cd Environmental-monitoring-with-Raspberry-Pi-master```<br />
 3. To compile the code run ```qmake```, followed by ```make```.<br />
 
 
