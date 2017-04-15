@@ -27,14 +27,15 @@ A table of contents is presented in order to quickly navigate through this READM
 
 ### Installation 
 
-Installing this project locally can be done by cloning this archive into your own Raspberry Pi:<br />  ``` git clone https://github.com/Treasurenkawu16/Environmental-monitoring-with-Raspberry-Pi.git``` <br />
-The following directory should be first opened: ```cd QwtExample```<br />
-To compile the code run ```qmake```, followed by ```make```.<br />
-Run with: ```startx \.QwtTeam18```<br />
+1. Installing this project locally can be done by cloning this archive into your own Raspberry Pi:<br />  ``` git clone https://github.com/Treasurenkawu16/Environmental-monitoring-with-Raspberry-Pi.git``` <br />
+2. The following directory should be first opened: ```cd QwtExample```<br />
+3. To compile the code run ```qmake```, followed by ```make```.<br />
+
 
 ### Usage
 
-Instructions on how to use our projects after installations and screenshots of the project in action will be available soon.
+After installations is complete, run with: <br /> ```startx \.QwtTeam18``` 
+This will display the temperature, light and humidity measurements on the QT. 
 
 ### User Interface
 
