@@ -19,7 +19,8 @@ See Wiki for full documentation on both the hardware and software parts of the p
 
 ## Table of Contents
 
-A table of contents is presented in order to quickly navigate through this README file. Useful tips for users who decide to take advantage of our projects will be exlplained in details.
+Useful tips for users who decide to take advantage of our projects will be exlplained in details in the following sections of the README file:
+
 1. Installation
 2. Usage
 3. User Interface
