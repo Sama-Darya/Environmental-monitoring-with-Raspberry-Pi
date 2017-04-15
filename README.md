@@ -34,7 +34,7 @@ A table of contents is presented in order to quickly navigate through this READM
 
 ### Usage
 
-After installations is complete, run with: <br /> ```startx \.QwtTeam18``` <br />
+After installations is complete, run with: <br /> ```startx ./QwtTeam18``` <br />
 This will display the temperature, light and humidity measurements on the QT. 
 
 ### User Interface
