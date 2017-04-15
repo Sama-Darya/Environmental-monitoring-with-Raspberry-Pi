@@ -8,7 +8,7 @@
 
 #ifndef ringbuffer_h
 #define ringbuffer_h
-#define BUFFER_SIZE 128
+#define BUFFER_SIZE 512
 /*buffer class defination begins below: */ 
 class Queue {
 public:
