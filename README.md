@@ -10,7 +10,6 @@ The aim of the project is to provide an easy and fast way to control the environ
 - Temperature
 - Light
 - Humidity
-- Smoke
 
 These factors are carefully selected, so that they can give a detailed and useful information to the user through a Graphical User Interface (GUI) on his PC. Since the signal from the sensors is transmitted wirelessly, the user can monitor the changes in the environment remotely and take appropriate actions if required. Thus, the system provides flexibility and regular control of the space of interest.
 
@@ -28,7 +27,10 @@ A table of contents is presented in order to quickly navigate through this READM
 
 ### Installation 
 
-Information on how to install our project locally will be soon present. 
+Installing this project locally can be done by cloning this archive into your own Raspberry Pi: ``` git clone https://github.com/Treasurenkawu16/Environmental-monitoring-with-Raspberry-Pi.git```
+The following directory should be first opened: ```cd QwtExample```
+To compile the code run ```qmake```, followed by ```make```.
+Run with: ```startx \.QwtTeam18```
 
 ### Usage
 
@@ -39,3 +41,5 @@ Instructions on how to use our projects after installations and screenshots of t
 Example screenshots of GUI, created and developed using QT, for monitoring the application parameters will be uploaded soon. Additional information can be found on GUI Wiki.
 
 ### License
+
+This project, the software and the documentation associated with it, is licensed under the open souce MIT license. 
