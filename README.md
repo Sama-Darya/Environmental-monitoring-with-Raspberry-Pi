@@ -27,10 +27,10 @@ A table of contents is presented in order to quickly navigate through this READM
 
 ### Installation 
 
-Installing this project locally can be done by cloning this archive into your own Raspberry Pi: ``` git clone https://github.com/Treasurenkawu16/Environmental-monitoring-with-Raspberry-Pi.git```
-The following directory should be first opened: ```cd QwtExample```
-To compile the code run ```qmake```, followed by ```make```.
-Run with: ```startx \.QwtTeam18```
+Installing this project locally can be done by cloning this archive into your own Raspberry Pi:<br />  ``` git clone https://github.com/Treasurenkawu16/Environmental-monitoring-with-Raspberry-Pi.git``` <br />
+The following directory should be first opened: ```cd QwtExample```<br />
+To compile the code run ```qmake```, followed by ```make```.<br />
+Run with: ```startx \.QwtTeam18```<br />
 
 ### Usage
 
