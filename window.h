@@ -9,8 +9,10 @@
 #include <QBoxLayout>
 #include "adcreader.h"
 
+#define BUFFER_LENGTH 128
+
 //set length of the ringbuffer to be 50
-#define BUFFER_LENGTH 50
+//#define BUFFER_LENGTH 128
 
 // class definition 'Window', inheritance of QWidget
 class Window : public QWidget
@@ -43,6 +45,7 @@ private:
 	QwtThermo    *thermo;
 	QwtPlot      *plot;
 	QwtPlotCurve *curve;
+	QwtPlotCurve *curve2;
 
 	// layout elements from Qt itself http://qt-project.org/doc/qt-4.8/classes.html
 	QVBoxLayout  *vLayout;  // vertical layout
@@ -53,6 +56,7 @@ private:
 	// data arrays for the plot
 	double xData[plotDataSize];
 	double yData[plotDataSize];
+	double y2Data[plotDataSize];
 
 	double gain;
 	int count;
