@@ -1,14 +1,17 @@
-/*
-This program sets the initialisation of the MCP3424 ADC. 
-
-Required package{
-apt-get install libi2c-dev
+/*  adcreader.cpp
+*   This program sets the initialisation of the MCP3424 ADC.
+*   To run this:
+*   Required package{
+*   apt-get install libi2c-dev
 */
 
 #include "adcreader.h"
+#include "ringbuffer.h"
+
 #include <QDebug>
 
 #include <stdio.h>
+#include <iostream>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,19 +23,55 @@ apt-get install libi2c-dev
 #include <fcntl.h>
 #include <linux/i2c-dev.h>
 
-static int i2cbus;
+using namespace std;
+//constructor
+
+//variables definations
+int i2cbus;
 const char *fileName = "/dev/i2c-1"; // change to /dev/i2c-0 if you are using a revision 0002 or 0003 model B
 unsigned char writebuffer[10] = { 0 };
 unsigned char readbuffer[10] = { 0 };
-static char signbit = 0;
+char signbit = 0;
 
-//implementation of functions
-
+//functions implementations
 void ADCreader::run()
 {
+  //function variables
+  //double temp, temp_volt,hum, hum_volt,light, light_volt ;
 	running = true;
+	ADCreader adcreader;
+	/*
+	//adding the sensor ringbuffers
+	Queue tempBuffer;
+	Queue humBuffer;
+	Queue lightBuffer;
+	*/
+	/*
+	light_volt =  adcreader.read_voltage(0x68,1, 12, 1, 1);
+	temp_volt =  adcreader.read_voltage(0x68,2, 12, 1, 1);
+	hum_volt =  adcreader.read_voltage(0x68,3, 12, 1, 1);
+	*/
+	/*
+	//append 100 new data into the buffer
+	for(int index=0; index<100; ++index){
+	    tempBuffer.Append(&adcreader.read_voltage(0x68,1, 12, 1, 1));
+	    humBuffer.Append(&adcreader.read_voltage(0x68,2, 12, 1, 1));
+	    lightBuffer.Append(&adcreader.read_voltage(0x68,3, 12, 1, 1));
+	}
+	
+	
+	*/
 	while (running) {
-		//qDebug() << "Test print";
+	  /*
+	  temp = (temp_volt - 0.621)/0.01; //temperature calculation
+	  qDebug() << "Light voltage: %G \n" << light_volt;
+	  qDebug() << "Temmperature (deg C):  %G \n" << temp;
+	  qDebug() << "Relative Humidity: %G \n" <<  hum_volt;
+	  //	qDebug() << "Team 18: Test print running";
+	  light_volt =  adcreader.read_voltage(0x68,1, 12, 1, 1);
+	temp_volt =  adcreader.read_voltage(0x68,2, 12, 1, 1);
+	hum_volt =  adcreader.read_voltage(0x68,3, 12, 1, 1);
+	  */
 		sleep(1);
 	}
 }
@@ -43,24 +82,32 @@ void ADCreader::quit()
 	exit(0);
 }
 
-//------------------------Additional Code-----------------//
-static void read_byte_array(char address, char reg, char length) {
+
+
+
+
+
+void ADCreader::read_byte_array(char address, char reg, char length) {
+  //fopen() when you want to write portable code
+  int fd = open(fileName, O_RDWR); //fd = file descriptor
+  
 
 	if ((i2cbus = open(fileName, O_RDWR)) < 0) {
-		printf("Failed to open i2c port for read %s \n", strerror(errno));
+	  cout << "file pointer: %d" << fd;
+		cout << "Failed to open i2c port for read %s \n", strerror(errno);
 
 		exit(1);
 	}
 
 	if (ioctl(i2cbus, I2C_SLAVE, address) < 0) {
-		printf("Failed to write to i2c port for read\n");
+		cout << "Failed to write to i2c port for read\n";
 		exit(1);
 	}
 
 	writebuffer[0] = reg;
 
 	if ((write(i2cbus, writebuffer, 1)) != 1) {
-		printf("Failed to write to i2c device for read\n");
+		cout << "Failed to write to i2c device for read\n";
 		exit(1);
 	}
 
@@ -69,7 +116,7 @@ static void read_byte_array(char address, char reg, char length) {
 	close(i2cbus);
 }
 
-static char update_byte(char byte, char bit, char value) {
+char ADCreader::update_byte(char byte, char bit, char value) {
 	/*
 	 internal method for setting the value of a single bit within a byte
 	 */
@@ -82,7 +129,7 @@ static char update_byte(char byte, char bit, char value) {
 
 }
 
-static char set_pga(char config, char gain) {
+char ADCreader::set_pga(char config, char gain) {
 	/*
 	 internal method for Programmable Gain Amplifier gain selection
 	 */
@@ -109,7 +156,7 @@ static char set_pga(char config, char gain) {
 	return (config);
 }
 
-static char set_bit_rate(char config, char rate) {
+char ADCreader::set_bit_rate(char config, char rate) {
 	/*
 	 internal method for bit rate selection
 	 */
@@ -138,7 +185,7 @@ static char set_bit_rate(char config, char rate) {
 	return (config);
 }
 
-static char set_conversion_mode(char config, char mode) {
+char ADCreader::set_conversion_mode(char config, char mode) {
 	/*
 	 internal method for setting the conversion mode
 	 */
@@ -151,7 +198,7 @@ static char set_conversion_mode(char config, char mode) {
 	return (config);
 }
 
-static char set_channel(char config, char channel) {
+char ADCreader::set_channel(char config, char channel) {
 	/*
 	 internal method for setting the channel
 	 */
@@ -186,7 +233,7 @@ static char set_channel(char config, char channel) {
 /// <param name="pga">1, 2, 4 or 8</param>
 /// <param name="conversionmode">0 = one shot conversion, 1 = continuous conversion</param>
 /// <returns>raw long value from ADC buffer</returns>
-int read_raw(char address, char channel, int bitrate, int pga,
+int ADCreader::read_raw(char address, char channel, int bitrate, int pga,
 		char conversionmode) {
 	// variables for storing the raw bytes from the ADC
 	char h = 0;
@@ -280,7 +327,7 @@ int read_raw(char address, char channel, int bitrate, int pga,
 /// <param name="pga">1, 2, 4 or 8</param>
 /// <param name="conversionmode">0 = one shot conversion, 1 = continuous conversion</param>
 /// <returns>double voltage value from ADC</returns>
-double read_voltage(char address, char channel, int bitrate, int pga,
+double ADCreader::read_voltage(char address, char channel, int bitrate, int pga,
 		char conversionmode) {
 	int raw = read_raw(address, channel, bitrate, pga, conversionmode); // get the raw value
 
@@ -318,3 +365,4 @@ double read_voltage(char address, char channel, int bitrate, int pga,
 		return (voltage);
 	}
 }
+
