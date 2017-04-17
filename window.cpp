@@ -130,7 +130,7 @@ void Window::timerEvent( QTimerEvent * )
   if(!tempbuffer.Full()){tempbuffer.Insert((adcreader->read_voltage(0x68,2, 12, 1,1) - 0.621)/0.01);}
   if(!humbuffer.Full()){humbuffer.Insert((0.826-(adcreader->read_voltage(0x68,3, 12, 1,1)))/0.04);}
   */
-  ++count;
+  //++count;
   // temp = (temp_volt - 0.621)/0.01; //temperature calculation
   //hum = (0.826-hum_volt)/0.04; //where 0.826 is from datasheet and 3.198/75.3=0.04
   
