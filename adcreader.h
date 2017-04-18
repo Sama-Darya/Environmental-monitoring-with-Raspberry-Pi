@@ -33,15 +33,8 @@
 class ADCreader : public QThread
 {
 public:
-    //variables declaration or instance variable
-    //static int i2cbus;
-    //const char *fileName = "/dev/i2c-1"; // change to /dev/i2c-0 if you are using a revision 0002 or 0003 model B
-  // unsigned char writebuffer[10] = { 0 };
-  //unsigned char readbuffer[10] = { 0 };
-  //static char signbit = 0;
   
    int i2cbus;
-   //const char *fileName;
   unsigned char writebuffer[readwrite_buff];
   unsigned char readbuffer[readwrite_buff];
   char signbit;
