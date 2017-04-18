@@ -16,8 +16,10 @@ Circularbuffer::Circularbuffer(int s) {
         head = 0; tail = 0;
         buffer_counter = 0;
 }
+//Destructor
 Circularbuffer::~Circularbuffer() { delete [] queue; }
-void Circularbuffer::Insert(int v) {
+void Circularbuffer::Insert(double v) {
+        /* Add data into the buffer. */
         queue[tail] = v;
         tail = (tail+1) % cap;
         buffer_counter++;
@@ -28,6 +30,6 @@ int Circularbuffer::Remove() {
         head = (head + 1) % cap;
         return t;
     }
-int Circularbuffer::Empty() {return (head == tail ); }
-int Circularbuffer::Full() {return (head==(tail+1)%cap);}
-int Circularbuffer::Length(void) const { return buffer_counter; }
+int Circularbuffer::Empty() {return (head == tail ); } //Check if the buffer is empty
+int Circularbuffer::Full() {return (head==(tail+1)%cap);} //Check if the buffer is full
+int Circularbuffer::Length(void) const { return buffer_counter; } //Check buffer length
