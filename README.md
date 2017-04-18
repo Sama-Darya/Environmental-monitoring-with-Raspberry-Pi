@@ -18,7 +18,7 @@ Making it work
 
 To clone the git repository:
 
-    git clone https://github.com/glasgow-bio/qwt-example
+    git clone https://github.com/Treasurenkawu16/Environmental-monitoring-with-Raspberry-Pi
 
 To build:
 
