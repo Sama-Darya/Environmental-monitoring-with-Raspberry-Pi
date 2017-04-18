@@ -1,3 +1,4 @@
+//Add header files
 #include "window.h"
 #include "adcreader.h"
 #include "circularbuffer.h"
@@ -56,33 +57,24 @@ Window::Window() :gain(5), count(0), currentmode(true)
 	adcreader = new ADCreader();
 	//read initial data from temperature sensor
 	
-	//initial fill half of the buffer
+	//fill buffer for initial plotting
 	for(int index=0; index<plotDataSize; ++index){
-	  //xData[index] = index;
 	       if(!tempbuffer.Full())
 		 tempbuffer.Insert((adcreader->read_voltage(0x68,2, 12, 1,1) - 0.621)/0.01);
 	       if(!humbuffer.Full())
 		 humbuffer.Insert((0.826-(adcreader->read_voltage(0x68,3, 12, 1,1)))/0.04);
-	       //	       if(!lightbuffer.Full())
-		 //		 lightbuffer.Insert(adcreader->read_voltage(0x68,1, 12, 1,1));
 	       if(!lightbuffer.Full()){lightbuffer.Insert((adcreader->read_voltage(0x68,1, 12, 1,1)/1.98)*100);}
 	     
 	 }
 	
 	//data required for plotting
 	for(int index=0; index<plotDataSize; ++index){
-	       xData[index] = index;
-	       // yData[index] = (adcreader->read_voltage(0x68,2, 12, 1,1) - 0.621)/0.01;
-	       //y2Data[index] = (0.826-(adcreader->read_voltage(0x68,3, 12, 1,1)))/0.04;
-	       
+	       xData[index] = index;     
 	       if(!tempbuffer.Empty()){yData[index] = tempbuffer.Remove();}
-	       if(!humbuffer.Empty()){y2Data[index] = humbuffer.Remove();}
-	       //if(!lightbuffer.Empty()){y3Data[index] = lightbuffer.Remove();}
-	       
+	       if(!humbuffer.Empty()){y2Data[index] = humbuffer.Remove();}   
 	}
 	
 	adcreader->start();
-	//adcreader->run(); //trying to print
 }
 
 
@@ -138,8 +130,6 @@ void Window::timerEvent( QTimerEvent * )
 	  
         
 }
-
-
 // this function can be used to change the gain of the A/D internal amplifier
 void Window::setGain(double gain)
 {
