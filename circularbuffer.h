@@ -8,7 +8,7 @@
 
 #ifndef circularbuffer_h
 #define circularbuffer_h
-#define BUFFERSIZE 100
+#define BUFFERSIZE 256
 
 class Circularbuffer{
     private:
