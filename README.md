@@ -1,4 +1,4 @@
-QwtExample
+QwtTeam18
 ===========
 
 A simple example program using Qt/Qwt widgets to be used as a base for students doing Raspberry Pi data acquisition.
