@@ -10,7 +10,7 @@ Qt is a cross platform framework for developing graphical applications, for more
 * [Signals and Slots](http://qt-project.org/doc/qt-4.8/signalsandslots.html)
 
 Qwt is a technical widget library based on Qt, please see:
-* [Qwt Hompage](http://qwt.sourceforge.net/)
+* [Qwt Homepage](http://qwt.sourceforge.net/)
 
 
 Making it work
