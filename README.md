@@ -22,7 +22,7 @@ To clone the git repository:
 
 To build:
 
-    cd qwt-example
+    cd qwt-Environmental-monitoring-with-Raspberry-Pi-master
     qmake
     make
 
