@@ -28,4 +28,4 @@ To build:
 
 To run (assuming you are logged into the RPi over ssh and no X-server is running):
 
-    startx ./QwtExample
+    startx ./QwtTeam18
