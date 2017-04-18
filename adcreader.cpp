@@ -49,35 +49,16 @@ void ADCreader::run()
   
 	running = true;
 	//ADCreader adcreader;
-	/*
-	light_volt =  adcreader.read_voltage(0x68,1, 12, 1, 1);
-	temp_volt =  adcreader.read_voltage(0x68,2, 12, 1, 1);
-	hum_volt =  adcreader.read_voltage(0x68,3, 12, 1, 1);
-	*/
-	/*
-	//append 100 new data into the buffer
-	for(int index=0; index<100; ++index){
-	    tempBuffer.Append(&adcreader.read_voltage(0x68,1, 12, 1, 1));
-	    humBuffer.Append(&adcreader.read_voltage(0x68,2, 12, 1, 1));
-	    lightBuffer.Append(&adcreader.read_voltage(0x68,3, 12, 1, 1));
-	}
-	*/
-	
+
+	if(!tempbuffer.Full()){tempbuffer.Insert((read_voltage(0x68,2, 12, 1,1) - 0.621)/0.01);}
+	if(!humbuffer.Full()){humbuffer.Insert((0.826-(read_voltage(0x68,3, 12, 1,1)))/0.04);}
+	if(!lightbuffer.Full()){lightbuffer.Insert((read_voltage(0x68,1, 12, 1,1)/1.98)*100);}	
 	
 	while (running) {
-	 
-	  /*
-	  temp = (temp_volt - 0.621)/0.01; //temperature calculation
-	  qDebug() << "Light voltage: %G \n" << light_volt;
-	  qDebug() << "Temmperature (deg C):  %G \n" << temp;
-	  qDebug() << "Relative Humidity: %G \n" <<  hum_volt;
-	  //	qDebug() << "Team 18: Test print running";
-	  light_volt =  adcreader.read_voltage(0x68,1, 12, 1, 1);
-	temp_volt =  adcreader.read_voltage(0x68,2, 12, 1, 1);
-	hum_volt =  adcreader.read_voltage(0x68,3, 12, 1, 1);
-	  */
+
 	  if(!tempbuffer.Full()){tempbuffer.Insert((read_voltage(0x68,2, 12, 1,1) - 0.621)/0.01);}
 	  if(!humbuffer.Full()){humbuffer.Insert((0.826-(read_voltage(0x68,3, 12, 1,1)))/0.04);}
+	  if(!lightbuffer.Full()){lightbuffer.Insert((read_voltage(0x68,1, 12, 1,1)/1.98)*100);}
 
 
 	  
@@ -90,11 +71,6 @@ void ADCreader::quit()
 	running = false;
 	exit(0);
 }
-
-
-
-
-
 
 void ADCreader::read_byte_array(char address, char reg, char length) {
   //fopen() when you want to write portable code
@@ -374,4 +350,3 @@ double ADCreader::read_voltage(char address, char channel, int bitrate, int pga,
 		return (voltage);
 	}
 }
-
