@@ -6,6 +6,7 @@
 *   Required package{
 *   apt-get install libi2c-dev
 */
+
 #ifndef ADCREADER
 #define ADCREADER
 
