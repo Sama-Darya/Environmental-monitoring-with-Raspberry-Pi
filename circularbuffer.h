@@ -19,7 +19,7 @@ class Circularbuffer{
     Circularbuffer(int s=BUFFERSIZE);
     ~Circularbuffer();
     void Insert(int v);
-    int Remove();
+    double Remove();
     int Empty();
     int Full();
     int Length(void) const;
