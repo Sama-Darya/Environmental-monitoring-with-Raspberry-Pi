@@ -24,9 +24,11 @@ void Circularbuffer::Insert(double v) {
         tail = (tail+1) % cap;
         buffer_counter++;
     }
-int Circularbuffer::Remove() {
+//change the return from int to double
+double Circularbuffer::Remove() {
     /* Return data before removing it from the buffer. */
-        int t = queue[head];
+        //int t = queue[head]; // changed this from int to double, see line below.
+        double t = queue[head];
         head = (head + 1) % cap;
         return t;
     }
